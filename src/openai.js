@@ -19,20 +19,16 @@ const locales = [
 
 export const generateChefDescription = async (
   chefFullName,
-  cuisineStyles,
-  cookingTechniques,
+  cuisineStylesAndTechniques,
   mostPopularDish,
   background = "",
-  vision = "",
   tone,
   language
 ) => {
-  const systemContent = `You will be given a list of answers provided by a chef through a questionnaire. Your task is to summarize the information in a first person presentation of the chef, as if he or she were presenting themselves on a cooking magazine. Minimum 400 characters. Maximum 500 characters. Use ${tone} tone. Do not use greetings (like "Hello", "Hey there", "Welcome", etc.). Write in ${language}. Remove non-cuisine related info.`;
-  const chefContent = `Chef name: ${chefFullName} \n Cuisine style: ${cuisineStyles.join(
+  const systemContent = `You will be given a list of answers provided by a chef through a questionnaire. Your task is to summarize the information in a first person presentation of the chef, as if he or she were presenting themselves on a cooking magazine. Minimum 350 characters. Maximum 430 characters. Use ${tone} tone. Do not use greetings (like "Hello", "Hey there", "Welcome", etc.). Write in ${language}. Remove non-cuisine related info.`;
+  const chefContent = `Chef name: ${chefFullName} \n Cuisine style and techniques: ${cuisineStylesAndTechniques.join(
     ", "
-  )} \n Cooking techniques: ${cookingTechniques.join(
-    ", "
-  )} \n Most popular dish: ${mostPopularDish} \n Background: ${background} \n Vision: ${vision} \n`;
+  )} \n Most popular dish: ${mostPopularDish} \n Background: ${background} \n`;
   const completion = await openai.chat.completions.create({
     messages: [
       {

@@ -9,8 +9,7 @@ app.use(bodyParser.json());
 app.post("/chefs/generate-description", async (req, res) => {
   const {
     chefFullName,
-    cuisineStyles,
-    cookingTechniques,
+    cuisineStylesAndTechniques,
     mostPopularDish,
     background,
     vision,
@@ -20,8 +19,7 @@ app.post("/chefs/generate-description", async (req, res) => {
 
   const chefDescription = await generateChefDescription(
     chefFullName,
-    cuisineStyles,
-    cookingTechniques,
+    cuisineStylesAndTechniques,
     mostPopularDish,
     background,
     vision,
