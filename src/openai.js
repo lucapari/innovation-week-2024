@@ -50,7 +50,7 @@ export const generateChefDescription = async (
     completion.usage.prompt_tokens * 0.5 +
     completion.usage.completion_tokens * 1.5;
   console.log(
-    `* Generate chef description * \nEstimated cost: $${estimatedCost}/1M requests`
+    `* Generate chef description * \nEstimated cost: $${estimatedCost}/1M`
   );
   return completion.choices[0];
 };
@@ -73,8 +73,6 @@ export const translateBiography = async (biography) => {
   const estimatedCost =
     translations.usage.prompt_tokens * 0.5 +
     translations.usage.completion_tokens * 1.5;
-  console.log(
-    `* Translate biography * \nEstimated cost: $${estimatedCost}/1M requests`
-  );
+  console.log(`* Translate biography * \nEstimated cost: $${estimatedCost}/1M`);
   return JSON.parse(translations.choices[0].message.content);
 };
