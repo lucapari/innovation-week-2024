@@ -5,6 +5,18 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_KEY,
 });
 
+const locales = [
+  "ca_ES",
+  "de_DE",
+  "en_US",
+  "es_ES",
+  "fr_FR",
+  "it_IT",
+  "nl_NL",
+  "pt_PT",
+  "sv_SE",
+];
+
 export const generateChefDescription = async (
   chefFullName,
   cuisineStyles,
@@ -34,20 +46,14 @@ export const generateChefDescription = async (
     ],
     model: "gpt-3.5-turbo",
   });
+  const estimatedCost =
+    completion.usage.prompt_tokens * 0.5 +
+    completion.usage.completion_tokens * 1.5;
+  console.log(
+    `* Generate chef description * \nEstimated cost: $${estimatedCost}/1M requests`
+  );
   return completion.choices[0];
 };
-
-const locales = [
-  "ca_ES",
-  "de_DE",
-  "en_US",
-  "es_ES",
-  "fr_FR",
-  "it_IT",
-  "nl_NL",
-  "pt_PT",
-  "sv_SE",
-];
 
 export const translateBiography = async (biography) => {
   const translations = await openai.chat.completions.create({
@@ -64,5 +70,11 @@ export const translateBiography = async (biography) => {
     response_format: { type: "json_object" },
     model: "gpt-3.5-turbo",
   });
+  const estimatedCost =
+    translations.usage.prompt_tokens * 0.5 +
+    translations.usage.completion_tokens * 1.5;
+  console.log(
+    `* Translate biography * \nEstimated cost: $${estimatedCost}/1M requests`
+  );
   return JSON.parse(translations.choices[0].message.content);
 };
