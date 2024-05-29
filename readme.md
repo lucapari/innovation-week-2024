@@ -1,4 +1,4 @@
-# OpenAI Endpoints
+# Innovation Week 2024 - Chefs
 
 This backend service provides two main features: generating a chef description and translating a biography. Both features utilize the OpenAI API.
 
