@@ -23,3 +23,13 @@ The `translateBiography` function takes in a chef's biography and translates it 
 ## Environment Variables
 
 This service requires the `OPENAI_KEY` environment variable, which should be the API key for your OpenAI account.
+
+## API Cost Estimation
+
+The cost of using the OpenAI API depends on the number of tokens processed. The number of tokens depends on the length and complexity of the input and output data:
+
+For the `generateChefDescription` function, the estimated cost per single call is $224.5/1M. This cost can vary depending on the length and complexity of the chef's information.
+
+For the `translateBiography` function, the estimated cost is $2272.5/1M. This cost can vary depending on the length and complexity of the biography and the number of locales it's translated into.
+
+Note that these are only estimations and the actual cost may vary.
